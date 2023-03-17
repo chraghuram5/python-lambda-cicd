@@ -4,4 +4,4 @@ def lambda_handler(event, context):
 
 def test(a,b):
     return a+b
-test(2,3);
+print(test(2,3));
