@@ -1,0 +1,15 @@
+name: Workflow test
+
+on: push
+
+jobs:
+  hello-world:
+    name: Hello world
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check-out devops repository
+      uses: actions/checkout@v2
+
+    - name: Hello World
+      run: python lambda_function.py
+      shell: sh
