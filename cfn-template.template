@@ -16,7 +16,7 @@
           "S3Bucket": "my-lambda-functions",
           "S3Key": "python-lambda-cicd.zip"
         },
-        "Runtime": "nodejs8.10",
+        "Runtime": "python3.9",
         "Timeout": 300
       }
     },
