@@ -5,4 +5,5 @@ runs:
     - name: Check-out devops repository
       uses: actions/checkout@v2
     - name: output command
+      shell: bash
       run: echo "Running temp.yaml" 
