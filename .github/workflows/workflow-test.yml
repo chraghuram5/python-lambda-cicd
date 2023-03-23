@@ -16,3 +16,9 @@ jobs:
       
     - name : Display output
       run : cat output.txt
+  
+  temp-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name : call temp.yaml
+        uses: ./.github/actions/temp-action
