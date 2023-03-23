@@ -1,6 +1,7 @@
 name: "Temp.yaml"
 runs:
   steps:
+  using: "composite"
   - name: Check-out devops repository
     uses: actions/checkout@v2
   - name: output command
