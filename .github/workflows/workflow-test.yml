@@ -12,10 +12,11 @@ jobs:
   
     - name : call temp.yaml
       uses: ./.github/actions/temp-action
-      
-    - name : Display output
-      run : cat output.txt 
-      
+    
     - name: Run script
       run: python lambda_function.py > output.txt
       shell: sh
+      
+    - name : Display output
+      run : cat output.txt 
+    
