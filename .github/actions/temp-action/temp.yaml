@@ -1,0 +1,6 @@
+name: "Temp.yaml"
+runs:
+  steps:
+  
+  - name: output command
+    run: echo "Running temp.yaml" 
