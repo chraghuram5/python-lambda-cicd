@@ -24,4 +24,4 @@ jobs:
       - name: Check-out temp-job repo
         uses: actions/checkout@v2
       - name : call temp.yaml
-        uses: ./.github/actions/temp-action/temp.yaml
+        uses: ./.github/actions/temp-action
