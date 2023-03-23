@@ -28,3 +28,5 @@ jobs:
   
     - name : call temp.yaml
       uses: ./.github/actions/temp-action
+      with:
+        environment: abcd
