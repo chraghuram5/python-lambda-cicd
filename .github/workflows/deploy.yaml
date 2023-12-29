@@ -1,10 +1,17 @@
-name: Deploy
+name: deploy
 
-on: push
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [workflow]
+    branches: [main]
+    types:
+      - completed
 
 jobs:
   hello-world:
-    name: Hello world
+    name: Hello world1
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
     - name: Check-out devops repository
