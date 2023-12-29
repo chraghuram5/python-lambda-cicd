@@ -9,7 +9,7 @@ on:
 
 jobs:
   hello-world:
-    name: Hello world
+    name: Hello world1
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
