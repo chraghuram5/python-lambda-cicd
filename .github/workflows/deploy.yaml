@@ -1,6 +1,21 @@
-name: Deploy
+name: Workflow test
 
-on:
-  # Allows to run this workflow manually from the Actions tab
-  workflow_dispatch:
-  push:
+on: push
+
+jobs:
+  hello-world:
+    name: Hello world
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check-out devops repository
+      uses: actions/checkout@v1
+  
+    - name : call temp.yaml
+      uses: ./.github/actions/temp-action
+    
+    - name: Run script
+      run: python lambda_function.py > output.txt
+      shell: sh
+      
+    - name : Display output
+      run : cat output.txt 
