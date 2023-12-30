@@ -1,4 +1,4 @@
-name: Deploy
+name: workflow
 
 on:
   workflow_run:
