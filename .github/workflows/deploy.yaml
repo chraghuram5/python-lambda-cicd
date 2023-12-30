@@ -5,9 +5,6 @@ on:
     workflows: [workflow]
     types:
       - completed
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
