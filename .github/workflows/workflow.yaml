@@ -16,7 +16,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Check if PR is open to main
+      - name: Check if PR is open to main for this branch
         id: check_pr
         run: |
           BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
