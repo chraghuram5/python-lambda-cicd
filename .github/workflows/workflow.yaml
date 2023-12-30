@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout Repository a
         uses: actions/checkout@v2
 
       - name: Check if PR is open to main for this branch
