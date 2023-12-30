@@ -9,7 +9,7 @@ on:
 
 jobs:
   Tests:
-    name: Hello world
+    name: Tests
     runs-on: ubuntu-latest
     steps:
     - name: Check-out devops repository
