@@ -19,14 +19,22 @@ jobs:
       - name: Check if PR is open to main for this branch
         id: check_pr
         run: |
-          BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
-          echo "$BRANCH_NAME"
-          # Check if the branch is not the main branch and there is an open pull request to main
-          if [ "$BRANCH_NAME" != "main" ] && [ -n "$(git ls-remote origin "refs/pull/*/merge" | grep "refs/heads/main")" ]; then
-            echo "There is an open PR to main for branch $BRANCH_NAME"
+          # Get the branch name that triggered the workflow
+          BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')
+
+          # Get information about the pull request
+          PR_INFO=$(gh pr view $BRANCH_NAME --json "number,state,headRefName,baseRefName" --json format=json)
+          
+          # Check if the pull request is open and targeting the main branch
+          PR_STATE=$(echo $PR_INFO | jq -r '.state // empty')
+          HEAD_REF=$(echo $PR_INFO | jq -r '.headRefName // empty')
+          BASE_REF=$(echo $PR_INFO | jq -r '.baseRefName // empty')
+
+          if [ "$PR_STATE" = "open" ] && [ "$BASE_REF" = "main" ]; then
+            echo "There is an open PR to main for branch $HEAD_REF"
             echo "::set-output name=pr_exists::true"
           else
-            echo "There is no open PR to main for branch $BRANCH_NAME"
+            echo "There is no open PR to main for branch $HEAD_REF"
             echo "::set-output name=pr_exists::false"
           fi
         shell: bash
