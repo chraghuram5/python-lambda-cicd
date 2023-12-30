@@ -13,34 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository a
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Check if PR is open to main for this branch
-        id: check_pr
-        run: |
-          # Get the branch name that triggered the workflow
-          BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')
-
-          # Get information about the pull request
-          PR_INFO=$(gh pr view $BRANCH_NAME --json "number,state,headRefName,baseRefName" --json format=json)
-          
-          # Check if the pull request is open and targeting the main branch
-          PR_STATE=$(echo $PR_INFO | jq -r '.state // empty')
-          HEAD_REF=$(echo $PR_INFO | jq -r '.headRefName // empty')
-          BASE_REF=$(echo $PR_INFO | jq -r '.baseRefName // empty')
-
-          if [ "$PR_STATE" = "open" ] && [ "$BASE_REF" = "main" ]; then
-            echo "There is an open PR to main for branch $HEAD_REF"
-            echo "::set-output name=pr_exists::true"
-          else
-            echo "There is no open PR to main for branch $HEAD_REF"
-            echo "::set-output name=pr_exists::false"
-          fi
-        shell: bash
-
-      - name: Deploy if PR exists
-        if: steps.check_pr.outputs.pr_exists == 'true'
+      - name: Print workflow_run information
         run: |
           # Add deployment steps here
-          echo "Deploying..."
+          echo "${{ github.workflow_run}}"
