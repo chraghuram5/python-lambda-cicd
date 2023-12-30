@@ -17,6 +17,4 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Print workflow_run information
-        run: |
-          # Add deployment steps here
-          echo "$GITHUB_CONTEXT"
+        run: echo "$GITHUB_CONTEXT"
