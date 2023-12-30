@@ -1,0 +1,38 @@
+name: workflow
+
+on:
+  workflow_run:
+    workflows: [deploy]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    if: github.event.workflow_run.conclusion == 'success'
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Check if PR is open to main
+        id: check_pr
+        run: |
+          BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+
+          # Check if the branch is not the main branch and there is an open pull request to main
+          if [ "$BRANCH_NAME" != "main" ] && [ -n "$(git ls-remote origin "refs/pull/*/merge" | grep "refs/heads/main")" ]; then
+            echo "There is an open PR to main for branch $BRANCH_NAME"
+            echo "::set-output name=pr_exists::true"
+          else
+            echo "There is no open PR to main for branch $BRANCH_NAME"
+            echo "::set-output name=pr_exists::false"
+          fi
+        shell: bash
+
+      - name: Deploy if PR exists
+        if: steps.check_pr.outputs.pr_exists == 'true'
+        run: |
+          # Add deployment steps here
+          echo "Deploying..."
