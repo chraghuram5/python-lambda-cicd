@@ -5,6 +5,7 @@ on: push
 jobs:
   hello-world:
     name: Hello world
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
     - name: Check-out devops repository
@@ -21,6 +22,7 @@ jobs:
       run : cat output.txt 
   
   job-2:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps: 
     - name: Check-out devops repository
