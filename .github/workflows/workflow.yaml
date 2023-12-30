@@ -19,4 +19,4 @@ jobs:
       - name: Print workflow_run information
         run: |
           # Add deployment steps here
-          echo "${{ github.workflow_run}}"
+          echo "$GITHUB_CONTEXT"
