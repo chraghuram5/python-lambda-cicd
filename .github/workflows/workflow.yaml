@@ -1,6 +1,12 @@
 name: workflow
 
-on: push
+on: 
+  workflow_run:
+    branches:
+      - '**'
+      - '!main'
+    types:
+      - completed
 
 jobs:
   workflow-job:
