@@ -8,7 +8,7 @@ on:
 
 jobs:
   hello-world:
-    name: Hello world12
+    name: Hello world
     runs-on: ubuntu-latest
     steps:
     - name: Check-out devops repository
