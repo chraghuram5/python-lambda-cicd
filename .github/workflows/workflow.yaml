@@ -24,9 +24,13 @@ jobs:
                      "https://api.github.com/repos/${{ github.repository }}/pulls?state=open&base=main" | \
                      jq --arg BRANCH_NAME "$BRANCH_NAME" \
                      '[.[] | select(.head.ref == $BRANCH_NAME)] | length' )
-          echo "$PR_COUNT"
           if [ "$PR_COUNT" -gt 0 ]; then
             echo "Branch has open pull request to main."
+            echo PR_EXISTS=true>>$GITHUB_ENV
           else
             echo "Branch does not have open pull request to main."
+            echo PR_EXISTS=false>>$GITHUB_ENV
           fi
+      - name: Print workflow_run information
+        if: ${{ env.PR_EXISTS }}
+        run: echo "PR Exists"
