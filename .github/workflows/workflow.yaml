@@ -26,8 +26,7 @@ jobs:
       - name: Check for PR to Main for the current branch for this branch
         run: |
           # BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
-          
-          BRANCH_NAME=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+          BRANCH_NAME=${github.event.workflow_run.head_branch}
           echo "$BRANCH_NAME"
           PR_COUNT=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
                      -H "Accept: application/vnd.github.v3+json" \
