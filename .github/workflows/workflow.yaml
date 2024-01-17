@@ -16,7 +16,9 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@master
+        with:
+          ref: ${{ github.ref }}
 
       - name: Print workflow_run information
         run: echo "$GITHUB_CONTEXT"
