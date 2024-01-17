@@ -27,6 +27,7 @@ jobs:
         run: |
           # BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
           BRANCH_NAME=${github.event.workflow_run.head_branch}
+          
           echo "$BRANCH_NAME"
           PR_COUNT=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
                      -H "Accept: application/vnd.github.v3+json" \
