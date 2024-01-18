@@ -42,5 +42,5 @@ jobs:
             echo PR_EXISTS=false>>$GITHUB_ENV
           fi
       - name: Print workflow_run information
-        if: env.PR_EXISTS == 'true'
+        if: env.PR_EXISTS == true && env.PR_EXISTS == true
         run: echo "PR Exists"
