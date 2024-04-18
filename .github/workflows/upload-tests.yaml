@@ -3,7 +3,7 @@ name: upload-tests
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: [ build-checks-1 ]
+    workflows: [ build-checks-2 ]
     branches: [ main ]
     types:
       - completed
