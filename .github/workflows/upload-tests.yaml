@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   workflow_run:
     workflows: [ build-checks-3 ]
-    # branches: [ test-3 ]
+    branches: [ test-4 ]
     types:
       - completed
 
