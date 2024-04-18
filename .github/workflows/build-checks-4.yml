@@ -3,7 +3,6 @@ name: build-checks-4
 on: 
   workflow_dispatch:
   push:
-    branches: [ test-5 ]
 
 jobs:
   tests:
