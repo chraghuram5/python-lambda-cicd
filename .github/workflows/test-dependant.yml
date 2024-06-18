@@ -9,7 +9,7 @@ on:
 
 jobs:
   run-tests:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Upload tests
     runs-on: ubuntu-latest
     steps:
