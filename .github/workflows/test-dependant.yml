@@ -2,7 +2,7 @@ name: upload-tests
 
 on:
   workflow_run:
-    workflows: [ Build Checks ]
+    workflows: [ build-checks-test ]
     types:
       - completed
 
