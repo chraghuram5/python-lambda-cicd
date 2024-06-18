@@ -1,0 +1,16 @@
+name: upload-tests
+
+on:
+  workflow_run:
+    workflows: [ Build Checks ]
+    types:
+      - completed
+
+jobs:
+  run-tests:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    name: Upload tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run upload-tests
+        run: echo "Run upload-tests"
