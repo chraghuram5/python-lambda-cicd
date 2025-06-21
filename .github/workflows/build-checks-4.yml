@@ -2,7 +2,8 @@ name: build-checks-4
 
 on: 
   workflow_dispatch:
-  push:
+  schedule:
+    - cron: "*/15 * * * *"
 
 jobs:
   tests:
